@@ -1,21 +1,10 @@
 import React from "react";
+import Counter from "./counter";
 
-const page = () => {
+export default function page() {
   return (
-    <main className="w-100px">
-      <div className="flex bg-white p-2 justify-items-end">
-        <div className="bg-black min-w-4">1</div>
-        <div>
-          <button className="bg-blue-500 hover:bg-blue-700 px-3 rounded-md">
-            -
-          </button>
-          <button className="bg-blue-500 hover:bg-blue-700 px-3 rounded-md">
-            +
-          </button>
-        </div>
-      </div>
-    </main>
+    <div className="p-4">
+      <Counter />
+    </div>
   );
-};
-
-export default page;
+}

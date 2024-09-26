@@ -29,6 +29,48 @@ function Page() {
             >
               Week-4 Assignment
             </Link>
+            <br />
+            <Link
+              href="/week-4"
+              className="text-lg hover:text-green-400 hover:underline"
+            >
+              Week-5 Assignment
+            </Link>
+            <br />
+            <Link
+              href="/week-4"
+              className="text-lg hover:text-green-400 hover:underline"
+            >
+              Week-6 Assignment
+            </Link>
+            <br />
+            <Link
+              href="/week-4"
+              className="text-lg hover:text-green-400 hover:underline"
+            >
+              Week-7 Assignment
+            </Link>
+            <br />
+            <Link
+              href="/week-4"
+              className="text-lg hover:text-green-400 hover:underline"
+            >
+              Week-8 Assignment
+            </Link>
+            <br />
+            <Link
+              href="/week-4"
+              className="text-lg hover:text-green-400 hover:underline"
+            >
+              Week-9 Assignment
+            </Link>
+            <br />
+            <Link
+              href="/week-4"
+              className="text-lg hover:text-green-400 hover:underline"
+            >
+              Week-10 Assignment
+            </Link>
           </li>
         </ul>
       </div>
