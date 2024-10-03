@@ -31,42 +31,42 @@ function Page() {
             </Link>
             <br />
             <Link
-              href="/week-4"
+              href="/week-5"
               className="text-lg hover:text-green-400 hover:underline"
             >
               Week-5 Assignment
             </Link>
             <br />
             <Link
-              href="/week-4"
+              href="/week-6"
               className="text-lg hover:text-green-400 hover:underline"
             >
               Week-6 Assignment
             </Link>
             <br />
             <Link
-              href="/week-4"
+              href="/week-7"
               className="text-lg hover:text-green-400 hover:underline"
             >
               Week-7 Assignment
             </Link>
             <br />
             <Link
-              href="/week-4"
+              href="/week-8"
               className="text-lg hover:text-green-400 hover:underline"
             >
               Week-8 Assignment
             </Link>
             <br />
             <Link
-              href="/week-4"
+              href="/week-9"
               className="text-lg hover:text-green-400 hover:underline"
             >
               Week-9 Assignment
             </Link>
             <br />
             <Link
-              href="/week-4"
+              href="/week-10"
               className="text-lg hover:text-green-400 hover:underline"
             >
               Week-10 Assignment

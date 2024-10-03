@@ -2,18 +2,19 @@
 import React, { useState } from "react";
 
 const Counter = () => {
-  const [count, SetCount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
-  const Increment = () => SetCount((prev) => prev + 1);
-  const Decrement = () => SetCount(count - 1);
+  const Increment = () => setQuantity((prev) => prev + 1);
+  const Decrement = () => setQuantity(quantity - 1);
 
   return (
-    <div className=" flex items-center w-fit bg-white  p-3 gap-4 mx-auto">
-      <div className="bg-black py-1 min-w-14  text-center">{count}</div>
+    <div className=" flex items-center w-fit bg-white  p-3 gap-4 rounded-lg">
+      <div className="bg-black py-1 min-w-14  text-center">{quantity}</div>
       <div className="space-x-2">
         <button
+          type="button"
           disabled={(() => {
-            if (count != 1) {
+            if (quantity != 1) {
               return false;
             } else {
               return true;
@@ -25,8 +26,9 @@ const Counter = () => {
           &minus;
         </button>
         <button
+          type="button"
           disabled={(() => {
-            if (count != 20) {
+            if (quantity != 20) {
               return false;
             } else {
               return true;

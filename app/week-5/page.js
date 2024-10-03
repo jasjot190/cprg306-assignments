@@ -1,5 +1,10 @@
 import React from "react";
+import Form from "./new-item";
 
 export default function page() {
-  return <div>Week5 -- under construction</div>;
+  return (
+    <div className="p-4 flex items-center w-fit mx-auto">
+      <Form />
+    </div>
+  );
 }
