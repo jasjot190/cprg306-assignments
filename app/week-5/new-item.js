@@ -7,15 +7,12 @@ export default function Form() {
   const [category, setCategory] = useState("Produce");
   const [err, setErr] = useState(false);
 
-  // const Increment = () => setQuantity((prev) => prev + 1);
-  // const Decrement = () => setQuantity((prev) => prev - 1);
-
   const handleNameChange = (e) => {
     let name = e.target.value;
     name = name.replace(/[^a-zA-Z\s]/g, "");
-    setName(name);
+    console.log(name.length);
+    err ? (name.length > 0 ? setErr(!err) & setName(name) : "") : setName(name);
   };
-  // const handleCategoryChange = (e) => setCategory(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,8 +33,6 @@ export default function Form() {
   };
 
   return (
-    // <div>
-    // </div>
     <form
       action="submit"
       className="bg-slate-900 p-4 m-4"
@@ -47,13 +42,7 @@ export default function Form() {
         type="text"
         placeholder="Item name"
         value={name}
-        onChange={
-          err
-            ? name.length > 0
-              ? !err && ((e) => handleNameChange(e))
-              : err && ((e) => handleNameChange(e))
-            : (e) => handleNameChange(e)
-        }
+        onChange={(e) => handleNameChange(e)}
         className="w-full mt-1 border-2 border-gray-300 p-3 rounded-lg text-gray-500 font-semibold"
       />
       <p className="text-red-700 mt-1" hidden={!err}>
@@ -120,7 +109,13 @@ export default function Form() {
       <button
         type="button"
         className="w-full bg-blue-500 rounded-lg p-3 font-bold text-lg hover:bg-blue-700"
-        onClick={name.length > 0 ? (e) => handleSubmit(e) : () => setErr(!err)}
+        onClick={
+          name.length > 0
+            ? (e) => handleSubmit(e)
+            : err
+            ? () => ""
+            : () => setErr(!err)
+        }
       >
         +
       </button>
