@@ -1,31 +1,129 @@
 "use client";
 import { useState } from "react";
-import Counter from "../week-4/new-item";
 
 export default function Form() {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("produce");
+  const [quantity, setQuantity] = useState(1);
+  const [category, setCategory] = useState("Produce");
+  const [err, setErr] = useState(false);
 
-  const handleSubmit = () => {};
+  // const Increment = () => setQuantity((prev) => prev + 1);
+  // const Decrement = () => setQuantity((prev) => prev - 1);
+
+  const handleNameChange = (e) => {
+    let name = e.target.value;
+    name = name.replace(/[^a-zA-Z\s]/g, "");
+    setName(name);
+  };
+  // const handleCategoryChange = (e) => setCategory(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const item = {
+      name: name,
+      quantity: quantity,
+      category: category,
+    };
+    console.log(
+      `Added item: ${name}, quantity: ${quantity}, category: ${category}`
+    );
+    alert(`Added item: ${name}, quantity: ${quantity}, category: ${category}`);
+
+    setName("");
+    setQuantity(1);
+    setCategory("Produce");
+    err ? setErr(!err) : setErr(err);
+  };
 
   return (
     // <div>
     // </div>
     <form
       action="submit"
-      className="bg-slate-900 p-2 m-4"
-      // onSubmit={(e) => e.preventDefault()}
+      className="bg-slate-900 p-4 m-4"
+      onSubmit={(e) => handleSubmit(e)}
     >
       <input
         type="text"
         placeholder="Item name"
-        className="w-full mt-1 border-2 border-gray-300 p-2 rounded-lg text-gray-500 font-bold"
+        value={name}
+        onChange={
+          err
+            ? name.length > 0
+              ? !err && ((e) => handleNameChange(e))
+              : err && ((e) => handleNameChange(e))
+            : (e) => handleNameChange(e)
+        }
+        className="w-full mt-1 border-2 border-gray-300 p-3 rounded-lg text-gray-500 font-semibold"
       />
-      <div className="my-4">
-        <Counter />
-        <select name="" id=""></select>
+      <p className="text-red-700 mt-1" hidden={!err}>
+        *Name cannot be empty
+      </p>
+      <div className="my-4 flex gap-10">
+        <div className=" flex items-center w-fit bg-white  p-3 gap-4 rounded-lg">
+          <div className="bg-black py-1 min-w-14  text-center">{quantity}</div>
+          <div className="space-x-2">
+            <button
+              type="button"
+              disabled={(() => {
+                if (quantity != 1) {
+                  return false;
+                } else {
+                  return true;
+                }
+              })()}
+              className="bg-blue-500 hover:bg-blue-700 px-3 rounded-md disabled:bg-gray-400"
+              onClick={() => setQuantity((prev) => prev - 1)}
+            >
+              &minus;
+            </button>
+            <button
+              type="button"
+              disabled={(() => {
+                if (quantity != 20) {
+                  return false;
+                } else {
+                  return true;
+                }
+              })()}
+              className="bg-blue-500 hover:bg-blue-700 px-3 rounded-md disabled:bg-gray-400"
+              onClick={() => setQuantity((prev) => prev + 1)}
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <select
+          name="Produce"
+          id=""
+          placeholder="Produce"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="ml-1 border-2 border-gray-300 p-2 rounded-lg font-sans text-gray-500 font-semibold"
+        >
+          <option value disabled>
+            Category
+          </option>
+          <option value="produce">Produce</option>
+          <option value="dairy">Dairy</option>
+          <option value="bakery">Bakery</option>
+          <option value="meat">Meat</option>
+          <option value="frozen foods">Frozen Foods</option>
+          <option value="canned goods">Canned Goods</option>
+          <option value="dry goods">Dry Goods</option>
+          <option value="beverages">Beverages</option>
+          <option value="snacks">Snacks</option>
+          <option value="household">Household</option>
+          <option value="other">Other</option>
+        </select>
       </div>
-      <button type="submit">+</button>
+      <button
+        type="button"
+        className="w-full bg-blue-500 rounded-lg p-3 font-bold text-lg hover:bg-blue-700"
+        onClick={name.length > 0 ? (e) => handleSubmit(e) : () => setErr(!err)}
+      >
+        +
+      </button>
     </form>
   );
 }

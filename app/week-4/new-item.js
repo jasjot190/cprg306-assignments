@@ -5,7 +5,7 @@ const Counter = () => {
   const [quantity, setQuantity] = useState(1);
 
   const Increment = () => setQuantity((prev) => prev + 1);
-  const Decrement = () => setQuantity(quantity - 1);
+  const Decrement = () => setQuantity((prev) => prev - 1);
 
   return (
     <div className=" flex items-center w-fit bg-white  p-3 gap-4 rounded-lg">
