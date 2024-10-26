@@ -2,10 +2,16 @@ import { useState } from "react";
 import Item from "./item";
 import Groups from "./groups";
 
-export default function ItemList({ items }) {
+export default function ItemList({ items, onItemSelect }) {
   let datalist = [...items];
-  const [sortBy, setSortBy] = useState("name");
   let CategorisedList = [];
+
+  const [sortBy, setSortBy] = useState("name");
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  // function onItemSelect(onSelect) {
+  //   selectedItem === id ? setSelectedItem(null) : setSelectedItem(onSelect);
+  // }
 
   if (sortBy === "GroupedCategory") {
     CategorisedList = splitByCategory(datalist);
@@ -44,7 +50,11 @@ export default function ItemList({ items }) {
           Grouped Category
         </button>
       </div>
-      {sortBy === "name" || sortBy == "category" ? Item(datalist) : ""}
+      {sortBy === "name" || sortBy == "category" ? (
+        <Item propsList={datalist} />
+      ) : (
+        ""
+      )}
       {sortBy === "GroupedCategory" ? Groups(CategorisedList) : ""}
     </div>
   );
