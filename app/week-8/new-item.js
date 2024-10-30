@@ -16,9 +16,10 @@ export default function Form({ onAddItem }) {
     e.preventDefault();
 
     let Id = Math.random().toString();
+    let newName = name + " ";
     onAddItem({
       id: Id,
-      name,
+      name: newName,
       quantity,
       category,
     });

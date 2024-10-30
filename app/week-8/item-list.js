@@ -4,17 +4,12 @@ import Groups from "./groups";
 
 export default function ItemList({ items, onItemSelect }) {
   let datalist = [...items];
-  let CategorisedList = [];
+  let ListSortedByCategory = [];
 
   const [sortBy, setSortBy] = useState("name");
-  const [selectedItem, setSelectedItem] = useState(null);
-
-  // function onItemSelect(onSelect) {
-  //   selectedItem === id ? setSelectedItem(null) : setSelectedItem(onSelect);
-  // }
 
   if (sortBy === "GroupedCategory") {
-    CategorisedList = splitByCategory(datalist);
+    ListSortedByCategory = splitByCategory(datalist);
   } else if (sortBy === "category") {
     datalist = datalist.sort((a, b) => a.category.localeCompare(b.category));
   } else {
@@ -55,7 +50,14 @@ export default function ItemList({ items, onItemSelect }) {
       ) : (
         ""
       )}
-      {sortBy === "GroupedCategory" ? Groups(CategorisedList) : ""}
+      {sortBy === "GroupedCategory" ? (
+        <Groups
+          propsCategoryList={ListSortedByCategory}
+          onItemSelection={onItemSelect}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

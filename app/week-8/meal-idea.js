@@ -22,28 +22,12 @@ export default function MealIdea({ ingredient }) {
     <div>
       <h1 className="font-bold text-xl">Meal Ideas</h1>
       {ingredient === null && <p>Select an item to see meal Ideas</p>}
-      {ingredient == !null && mealsData == null && (
+      {!(ingredient === null) && mealsData === null && (
         <p>No meal ideas found for {ingredient}</p>
       )}
-      {mealsData === !null && (
+      {!(mealsData === null) && (
         <p>Here are some meal ideas using {ingredient}:</p>
       )}
-      {/* <Meals
-        propList={[
-          {
-            strMeal: "BBQ Pork Sloppy Joes",
-            strMealThumb:
-              "https://www.themealdb.com/images/media/meals/atd5sh1583188467.jpg",
-            idMeal: "52995",
-          },
-          {
-            strMeal: "Bread and Butter Pudding",
-            strMealThumb:
-              "https://www.themealdb.com/images/media/meals/xqwwpy1483908697.jpg",
-            idMeal: "52792",
-          },
-        ]}
-      /> */}
       <Meals propsList={mealsData} />
     </div>
   );

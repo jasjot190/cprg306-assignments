@@ -1,7 +1,6 @@
 import React from "react";
 
 function Meals({ propsList }) {
-  console.log(propsList);
   return propsList === null
     ? ""
     : propsList.map((props) => (
@@ -9,7 +8,7 @@ function Meals({ propsList }) {
           key={Math.random().toString()}
           className="m-1 p-2 bg-slate-900 max-w-sm hover:bg-orange-800 cursor-pointer"
         >
-          <li className="capitalize text-xl">{props.strMeal}</li>
+          <li className="capitalize text-base">{props.strMeal}</li>
         </ul>
       ));
 }

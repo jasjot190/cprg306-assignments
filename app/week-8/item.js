@@ -13,8 +13,8 @@ const Item = ({ propsList, onSelect }) => {
       className={`m-4 p-2 max-w-sm cursor-pointer
         ${selectedItem === props.name ? "bg-orange-700" : "bg-slate-900"}
      hover:bg-orange-700`}
-      onClick={() => onSelectPreFunction(props.name)}
       key={props.id}
+      onClick={() => onSelectPreFunction(props.name)}
     >
       <li className="text-xl font-bold">{props.name}</li>
       <li className="text-sm">

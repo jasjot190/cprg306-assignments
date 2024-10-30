@@ -1,10 +1,10 @@
 import Item from "./item";
 
-const Groups = (propsList) => {
-  return Object.keys(propsList).map((props) => (
-    <div>
-      <h1 className="capitalize text-xl">{props}</h1>
-      {Item(propsList[props])}
+const Groups = ({ propsCategoryList, onItemSelection }) => {
+  return Object.keys(propsCategoryList).map((props) => (
+    <div key={Math.random().toString()}>
+      <ul className="capitalize text-xl">{props}</ul>
+      <Item propsList={propsCategoryList[props]} onSelect={onItemSelection} />
     </div>
   ));
 };
