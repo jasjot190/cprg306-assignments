@@ -51,7 +51,7 @@ export default function ItemList({ items, onItemSelect }) {
         </button>
       </div>
       {sortBy === "name" || sortBy == "category" ? (
-        <Item propsList={datalist} />
+        <Item propsList={datalist} onSelect={onItemSelect} />
       ) : (
         ""
       )}
