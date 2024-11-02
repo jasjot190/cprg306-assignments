@@ -1,13 +1,13 @@
 "use client";
 import { useUserAuth } from "./_utils/auth-context";
-import Page from "./shopping-list/page";
-export default function page() {
+import Index from "./shopping-list/page";
+export default function Page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   const login = async () => await gitHubSignIn();
 
   if (user) {
-    return <div>{<Page />}</div>;
+    return <div>{<Index />}</div>;
   }
   return (
     <div className="min-h-screen flex items-center justify-center">

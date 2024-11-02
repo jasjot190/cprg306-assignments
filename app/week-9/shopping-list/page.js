@@ -7,7 +7,7 @@ import { useState } from "react";
 import MealIdea from "./meal-idea";
 import Link from "next/link.js";
 
-export default function Page() {
+export default function Index() {
   const [items, setItems] = useState(itemsData);
   const [selectedItemName, setSelectedItemName] = useState(null);
 
