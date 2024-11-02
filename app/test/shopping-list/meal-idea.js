@@ -4,27 +4,16 @@ import Meals from "./meals";
 
 export default function MealIdea({ ingredient }) {
   const [mealsData, setMealsData] = useState(null);
-  const [loadedData, setLoadedData] = useState([]);
+  const [mealIngredients, setMealIngredients] = useState([]);
   async function fetchMealIdeas(ingredient) {
-    let filteredName = null;
-    ingredient === null
-      ? ""
-      : (filteredName = ingredient.replace(
-          /([#0-9]\u20E3)|[\xA9\xAE\u203C\u2047-\u2049\u2122\u2139\u3030\u303D\u3297\u3299][\uFE00-\uFEFF]?|[\u2190-\u21FF][\uFE00-\uFEFF]?|[\u2300-\u23FF][\uFE00-\uFEFF]?|[\u2460-\u24FF][\uFE00-\uFEFF]?|[\u25A0-\u25FF][\uFE00-\uFEFF]?|[\u2600-\u27BF][\uFE00-\uFEFF]?|[\u2900-\u297F][\uFE00-\uFEFF]?|[\u2B00-\u2BF0][\uFE00-\uFEFF]?|(?:\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDEFF])[\uFE00-\uFEFF]?/g,
-          ""
-        ));
-    filteredName === null
-      ? ""
-      : (filteredName = filteredName.slice(0, filteredName.indexOf(",")));
-
     let fetchedData = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${filteredName}`
+      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
     );
     fetchedData = await fetchedData.json();
     setMealsData(fetchedData.meals);
   }
 
-  async function fetchMealData(selectedMeal) {
+  async function fetchMealIngredients(selectedMeal) {
     let res = await fetch(
       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${selectedMeal}`
     );
@@ -44,18 +33,12 @@ export default function MealIdea({ ingredient }) {
         quantity: res[Ingredient_quantity_key],
       });
     }
-    setLoadedData(listOfIngredients);
+    setMealIngredients(listOfIngredients);
   }
 
-  function loadMealIdeas() {
+  useEffect(() => {
     fetchMealIdeas(ingredient);
-  }
-
-  function loadingData(mealInput) {
-    fetchMealData(mealInput);
-  }
-
-  useEffect(loadMealIdeas, [ingredient]);
+  }, [ingredient]);
 
   return (
     <div>
@@ -71,8 +54,8 @@ export default function MealIdea({ ingredient }) {
       )}
       <Meals
         propsList={mealsData}
-        loadMealData={loadingData}
-        finalData={loadedData}
+        loadMealData={fetchMealIngredients}
+        finalData={mealIngredients}
       />
     </div>
   );

@@ -5,9 +5,26 @@ export default function page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   const login = async () => await gitHubSignIn();
+  const logout = async () => await firebaseSignOut();
 
   if (user) {
-    return <div>{<Page />}</div>;
+    return (
+      <div className="">
+        <div className="bg-slate-950 flex items-center p-4 px-8 m-8 justify-between font-bold text-lg">
+          <div>Welcome, {user.name}!</div>
+          <div>
+            Week-9 Assignment --- Implementing Authentication using firebase
+          </div>
+          <button
+            onClick={logout}
+            className="outline-slate-300 p-2 rounded-lg bg-red-800 text-sm"
+          >
+            LogOut
+          </button>
+        </div>
+        {<Page />}
+      </div>
+    );
   }
   return (
     <div className="min-h-screen flex items-center justify-center">

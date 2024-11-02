@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "encoding": "^0.1.13",
     "express": "^4.21.0",
+    "firebase": "^11.0.1",
     "next": "14.2.9",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
     "@types/node": "22.7.4",

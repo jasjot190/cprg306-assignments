@@ -48,8 +48,8 @@ function Meals({ propsList, loadMealData, finalData }) {
             className="flex gap-4"
             onClick={() =>
               selectedMeal === props.idMeal
-                ? setMealSelection(null)
-                : setMealSelection(props.idMeal)
+                ? setMealSelection(null) & transferData()
+                : setMealSelection(props.idMeal) & transferData()
             }
           >
             <img className="max-w-10" src={props.strMealThumb} alt="" />
@@ -57,22 +57,24 @@ function Meals({ propsList, loadMealData, finalData }) {
               {props.strMeal}
             </li>
           </div>
-          {selectedMeal === props.idMeal ? (
-            <ul key={Math.random().toString()} className="text-gray-400">
-              Ingredients needed:
-              {mealIngredients.map((ingredient) => (
-                <li key={Math.random().toString()} className="mx-2 text-sm ">
-                  {" "}
-                  {ingredient.value}{" "}
-                  {!["", " ", null, undefined].includes(ingredient.quantity)
-                    ? `(${ingredient.quantity})`
-                    : ""}
-                </li>
-              ))}
-            </ul>
-          ) : (
+          {/* {selectedMeal === props.idMeal ? ( */}
+          <ul key={Math.random().toString()} className="text-gray-400">
+            Ingredients needed:
+            {mealIngredients === undefined
+              ? ""
+              : mealIngredients.map((ingredient) => (
+                  <li key={Math.random().toString()} className="mx-2 text-sm ">
+                    {" "}
+                    {ingredient.value}{" "}
+                    {!["", " ", null, undefined].includes(ingredient.quantity)
+                      ? `(${ingredient.quantity})`
+                      : ""}
+                  </li>
+                ))}
+          </ul>
+          {/* ) : (
             ""
-          )}
+          )} */}
         </ul>
       ));
 }

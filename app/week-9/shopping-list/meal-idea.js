@@ -4,7 +4,7 @@ import Meals from "./meals";
 
 export default function MealIdea({ ingredient }) {
   const [mealsData, setMealsData] = useState(null);
-  const [loadedData, setLoadedData] = useState([]);
+  // const [loadedData, setLoadedData] = useState([]);
   async function fetchMealIdeas(ingredient) {
     let filteredName = null;
     ingredient === null
@@ -24,38 +24,32 @@ export default function MealIdea({ ingredient }) {
     setMealsData(fetchedData.meals);
   }
 
-  async function fetchMealData(selectedMeal) {
-    let res = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${selectedMeal}`
-    );
-    res = await res.json();
-    res = res.meals;
-    res = res[0];
-    let res_keys = Object.keys(res);
+  // async function fetchMealData(selectedMeal) {
+  //   let res = await fetch(
+  //     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${selectedMeal}`
+  //   );
+  //   res = await res.json();
+  //   res = res.meals;
+  //   res = res[0];
+  //   let res_keys = Object.keys(res);
 
-    let listOfIngredients = [];
+  //   let listOfIngredients = [];
 
-    for (let i = 9; i < 29; i++) {
-      let Ingredient_value_key = res_keys[i];
-      let Ingredient_quantity_key = res_keys[i + 20];
+  //   for (let i = 9; i < 29; i++) {
+  //     let Ingredient_value_key = res_keys[i];
+  //     let Ingredient_quantity_key = res_keys[i + 20];
 
-      listOfIngredients.push({
-        value: res[Ingredient_value_key],
-        quantity: res[Ingredient_quantity_key],
-      });
-    }
-    setLoadedData(listOfIngredients);
-  }
+  //     listOfIngredients.push({
+  //       value: res[Ingredient_value_key],
+  //       quantity: res[Ingredient_quantity_key],
+  //     });
+  //   }
+  //   setLoadedData(listOfIngredients);
+  // }
 
-  function loadMealIdeas() {
+  useEffect(() => {
     fetchMealIdeas(ingredient);
-  }
-
-  function loadingData(mealInput) {
-    fetchMealData(mealInput);
-  }
-
-  useEffect(loadMealIdeas, [ingredient]);
+  }, [ingredient]);
 
   return (
     <div>
@@ -69,11 +63,7 @@ export default function MealIdea({ ingredient }) {
       {!(mealsData === null) && (
         <p className="m-2">Here are some meal ideas using {ingredient}:</p>
       )}
-      <Meals
-        propsList={mealsData}
-        loadMealData={loadingData}
-        finalData={loadedData}
-      />
+      <Meals propsList={mealsData} />
     </div>
   );
 }
