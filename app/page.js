@@ -71,12 +71,6 @@ function Page() {
             >
               Week-10 Assignment
             </Link>
-            <Link
-              href="/test"
-              className="text-lg hover:text-green-400 hover:underline"
-            >
-              test
-            </Link>
           </li>
         </ul>
       </div>

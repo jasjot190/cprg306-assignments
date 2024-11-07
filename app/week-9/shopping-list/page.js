@@ -56,7 +56,7 @@ export default function Index() {
         <div className="absolute bg-[url(/bg.png)] w-full bg-cover h-full blur-sm"></div>
         <div className=" bg-white z-10 p-10 py-12 rounded-md font-bold text-slate-950">
           <div className="flex flex-col justify-center items-center gap-8">
-            <img className="w-44" src="/accessdenied.png" />
+            <img className="w-44" src="/AccessDenied.png" />
             <p className="flex gap-1">
               <Link href={"./"} className=" text-green-600 hover:underline">
                 Log-In

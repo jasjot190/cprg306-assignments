@@ -5,7 +5,7 @@ import itemsData from "./items.json";
 import { useState } from "react";
 import MealIdea from "./meal-idea";
 
-export default function page() {
+export default function Page() {
   const [items, setItems] = useState(itemsData);
   const [selectedItemName, setSelectedItemName] = useState(null);
   const handleAddItem = (newItem) => {

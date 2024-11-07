@@ -2,7 +2,7 @@
 
 import { useUserAuth } from "../_utils/auth-context";
 
-const page = () => {
+const Page = () => {
   const { user } = useUserAuth();
   if (user) {
     return (
@@ -17,4 +17,4 @@ const page = () => {
   return <div>You must be login to this page</div>;
 };
 
-export default page;
+export default Page;

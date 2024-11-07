@@ -3,7 +3,7 @@ import Item from "./item";
 import itemsjson from "./items.json";
 import Groups from "./groups";
 
-export const itemList = () => {
+export const ItemList = () => {
   let datalist = [...itemsjson];
   const [sortBy, setSortBy] = useState("name");
   let CategorisedList = [];
