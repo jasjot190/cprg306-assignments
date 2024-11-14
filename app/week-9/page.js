@@ -2,7 +2,7 @@
 import { useUserAuth } from "./_utils/auth-context";
 import Index from "./shopping-list/page";
 export default function Page() {
-  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
+  const { user, gitHubSignIn } = useUserAuth();
 
   const login = async () => await gitHubSignIn();
 
