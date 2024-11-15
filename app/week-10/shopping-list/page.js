@@ -32,6 +32,7 @@ export default function Index() {
 
   const handleClear = async () => {
     await clearList(user.uid);
+    setSelectedItemName(null);
     loadItems();
   };
 

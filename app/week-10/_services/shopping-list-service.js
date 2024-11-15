@@ -29,14 +29,8 @@ const addItem = async (userId, item) => {
     category: item.category,
   };
   console.log(newItem);
-  const itemSent = await addDoc(itemsRef, newItem);
+  await addDoc(itemsRef, newItem);
 };
-
-// const deleteItem = async (userId, item) => {
-//   const itemsRef = doc(db, "users", userId, "items", item);
-//   const itemDeleted = await deleteDoc(itemsRef);
-//   return itemDeleted;
-// };
 
 const deleteItem = async (userId, item) => {
   const itemsRef = doc(db, "users", userId, "items", item);

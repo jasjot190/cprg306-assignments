@@ -18,7 +18,6 @@ const Item = ({ propsList, onSelect, removeItem }) => {
     deleteItem(uid, pid);
     removeItem();
   };
-
   return propsList.map((props) => (
     <div className="flex" key={props.id}>
       <button
