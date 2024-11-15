@@ -2,7 +2,7 @@ import { useState } from "react";
 import Item from "./item";
 import Groups from "./groups";
 
-export default function ItemList({ items, onItemSelect }) {
+export default function ItemList({ items, onItemSelect, itemRemoved }) {
   let datalist = [...items];
   let ListSortedByCategory = [];
 
@@ -18,35 +18,43 @@ export default function ItemList({ items, onItemSelect }) {
 
   return (
     <div>
-      <div>
-        Sort by:
-        <button
-          onClick={() => setSortBy("name")}
-          className={`p-1 m-2 w-28 ${
-            sortBy === "name" ? "bg-orange-500" : "bg-orange-700"
-          }`}
-        >
-          Name
-        </button>
-        <button
-          onClick={() => setSortBy("category")}
-          className={`p-1 m-2 w-28 ${
-            sortBy === "category" ? "bg-orange-500" : "bg-orange-700"
-          }`}
-        >
-          Category
-        </button>
-        <button
-          onClick={() => setSortBy("GroupedCategory")}
-          className={`p-1 m-2 w-28 ${
-            sortBy === "GroupedCategory" ? "bg-orange-500" : "bg-orange-700"
-          }`}
-        >
-          Grouped Category
-        </button>
-      </div>
+      {datalist.length < 1 ? (
+        ""
+      ) : (
+        <div>
+          Sort by:
+          <button
+            onClick={() => setSortBy("name")}
+            className={`p-1 m-2 w-28 ${
+              sortBy === "name" ? "bg-orange-500" : "bg-orange-700"
+            }`}
+          >
+            Name
+          </button>
+          <button
+            onClick={() => setSortBy("category")}
+            className={`p-1 m-2 w-28 ${
+              sortBy === "category" ? "bg-orange-500" : "bg-orange-700"
+            }`}
+          >
+            Category
+          </button>
+          <button
+            onClick={() => setSortBy("GroupedCategory")}
+            className={`p-1 m-2 w-28 ${
+              sortBy === "GroupedCategory" ? "bg-orange-500" : "bg-orange-700"
+            }`}
+          >
+            Grouped Category
+          </button>
+        </div>
+      )}
       {sortBy === "name" || sortBy == "category" ? (
-        <Item propsList={datalist} onSelect={onItemSelect} />
+        <Item
+          propsList={datalist}
+          onSelect={onItemSelect}
+          removeItem={itemRemoved}
+        />
       ) : (
         ""
       )}

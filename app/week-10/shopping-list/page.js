@@ -8,7 +8,6 @@ import Link from "next/link.js";
 import {
   getItems,
   addItem,
-  deleteItem,
   clearList,
 } from "../_services/shopping-list-service.js";
 
@@ -18,11 +17,9 @@ export default function Index() {
 
   const { user, firebaseSignOut } = useUserAuth();
   const logout = async () => await firebaseSignOut();
-  const handleAddItem = (newItem) => {
-    let added_item_id = addItem(user.uid, newItem);
+  const handleAddItem = async (newItem) => {
+    await addItem(user.uid, newItem);
     loadItems();
-    // setSelectedItemName([{ id: Math.random.toString(), newItem }]);
-    // console.log(newItem);
   };
 
   const handleItemSelect = (name) => {
@@ -31,6 +28,11 @@ export default function Index() {
   const loadItems = async () => {
     let items_recieved = await getItems(user.uid);
     setItems(items_recieved);
+  };
+
+  const handleClear = async () => {
+    await clearList(user.uid);
+    loadItems();
   };
 
   useEffect(() => {
@@ -58,15 +60,21 @@ export default function Index() {
             <div className="flex items-center w-fit">
               <Form onAddItem={handleAddItem} />
             </div>
-            <ItemList items={items} onItemSelect={handleItemSelect} />
-            {/* <button
+            <ItemList
+              items={items}
+              onItemSelect={handleItemSelect}
+              itemRemoved={loadItems}
+            />
+            <button
               onClick={() => {
-                deleteItem(user.uid);
+                handleClear();
               }}
-              className="outline-slate-300 p-2 px-8 rounded-lg bg-red-800 text-sm hover:text-yellow-500 mx-36 my-2"
+              className={`outline-slate-300 p-2 px-8 rounded-lg bg-red-800 text-sm hover:text-yellow-500 mx-48 my-3 ${
+                items.length > 1 ? "opacity-100" : "opacity-0"
+              }`}
             >
               Clear
-            </button> */}
+            </button>
           </div>
           <div className="p-4 w-5/12">
             <MealIdea ingredient={selectedItemName} />

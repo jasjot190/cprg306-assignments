@@ -1,5 +1,13 @@
 import { db } from "../_utils/firebase";
-import { collection, getDocs, addDoc, query, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  query,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 
 import React from "react";
 
@@ -15,20 +23,32 @@ const getItems = async (userId) => {
 
 const addItem = async (userId, item) => {
   const itemsRef = collection(doc(db, "users", userId), "items");
-  const itemSent = await addDoc(itemsRef, item);
-  return itemSent.id;
+  let newItem = {
+    name: item.name,
+    quantity: item.quantity,
+    category: item.category,
+  };
+  console.log(newItem);
+  const itemSent = await addDoc(itemsRef, newItem);
 };
 
+// const deleteItem = async (userId, item) => {
+//   const itemsRef = doc(db, "users", userId, "items", item);
+//   const itemDeleted = await deleteDoc(itemsRef);
+//   return itemDeleted;
+// };
+
 const deleteItem = async (userId, item) => {
-  const itemsRef = collection(doc(db, "users", userId), "items");
-  const itemDeleted = await deleteDoc(itemsRef, item);
-  return itemDeleted;
+  const itemsRef = doc(db, "users", userId, "items", item);
+  await deleteDoc(itemsRef);
+  return true;
 };
 
 const clearList = async (userId) => {
-  const userRef = collection(doc(db, "users", userId), "items");
-  const listDeleted = await deleteDoc(userRef);
-  return listDeleted;
+  const Data = await getItems(userId);
+  Data.map((element) => {
+    deleteItem(userId, element.id);
+  });
 };
 
 export { getItems, addItem, deleteItem, clearList };
